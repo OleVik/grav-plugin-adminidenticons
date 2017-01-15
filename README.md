@@ -1,6 +1,6 @@
 # [Grav](http://getgrav.org/) Admin Identicons Plugin
 
-Use identicons for avatars in the Admin-plugin, through customizable, yet [classical identicons](https://github.com/Hedronium/Avity) and [classical patterns](https://github.com/ranvis/identicon). The default avatar looks like this:
+Use identicons for avatars in the Admin-plugin, through customizable, yet [classical identicons](https://github.com/Hedronium/Avity) and [classical patterns](https://github.com/ranvis/identicon). The default configuration yields an avatar like this:
 
 ![Default Identicon](http://i.imgur.com/7oEcgEE.png)
 
@@ -79,8 +79,8 @@ From the [ranvis/identicon](https://github.com/ranvis/identicon/wiki/Samples)-wi
 
 ## Notes
 
-Generating avatars with this plugin takes processing power and uses memory, which - depending on your configuration - will be negligible compared to requesting an external image. Also, when the site is cached the extra load is not noticeable.
+Generating avatars with this plugin takes processing power and uses memory, which - depending on your configuration - will be negligible compared to requesting an external image. Also, when the site is cached the extra load is not noticeable. All images are embedded as Base64 data-URIs, thus reducing internal HTTP requests and the dependency on the external request from Gravatar. All users will also automatically get their own avatar, which is not the case with Gravatar.
 
-All images are embedded as Base64 data-URIs, thus reducing internal HTTP requests and the dependency on the external request from Gravatar. All users will also automatically get their own avatar, which is not the case with Gravatar.
+The plugin overrides the image source for Gravatar in the navigation-bar and on the userinfo-page, as well as CSS that overrides the border-radius for these images. The range-field, used by forms to provide a slider to select a value, is overridden to show what value is selected.
 
 MIT License 2017 by [Ole Vik](http://github.com/olevik).
