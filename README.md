@@ -2,7 +2,7 @@
 
 Use identicons for avatars in the Admin-plugin, through customizable, yet [classical identicons](https://github.com/Hedronium/Avity) and [classical patterns](https://github.com/ranvis/identicon). The default avatar looks like this:
 
-![Default Identicon](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAABrUlEQVR42u3boUoEQRjAcU8EfQeLQawGg2CwXLBYrBaDQcMmoy9gMx1yJrHYRBBBRK6KhgtX9cKB+AC2MZ0vIMLuB4M7/n79Y/fm/syEYTsppekM/9asJRAAAkAACAABIAAEgAAQAAJAAAgAASAABIAAEAACQAAIAAEgAASAABAAAqBt5nI/sErzjWd7C1+1Z3aHr6H3vVpbqT2zvL0Teub47sYOgAAQAAJAAAgAASAABIAAEAACQADEZb8NfD4+aj58etKKRd08uxDAX9HkOtcRgAAQAAJAAAgAASAABIAAEAACoBTZL4PeH+8D0/VvA1cPqtD7js57tWcmt9exRar27QAIAAEgAASAABAAAkAACAABIAAEgAAIKv7bwM/xm3/5F52U0rTkH7jU3QrNTwYPjgAEgAAQAAJAAAgAASAABIAAEACtlf02sNu/bDw7ONxrxaIurm+E5j9ensoNILfSb/McAQgAASAABIAAEAACQAAIAAEgAASAAPhZ8R+HYgdAAAgAASAABIAAEAACQAAIQAAIAAEgAASAABAAAkAACAABIAAEgAAQAOX5BiqTMeRE6FXIAAAAAElFTkSuQmCC)
+![Default Identicon](http://i.imgur.com/7oEcgEE.png)
 
 Every user avatar is unique, as users full names are hashed into virtually random strings used for generating the identicons.
 
