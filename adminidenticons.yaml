@@ -1,0 +1,12 @@
+enabled: true
+type: identicon
+border_radius: 100
+background: '#f8f8f8'
+foreground: '#64F0FF'
+varied: true
+padding: 28
+spacing: 0
+rows: 0
+columns: 0
+tiles: 6
+colors: 2

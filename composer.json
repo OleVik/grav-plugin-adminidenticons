@@ -1,0 +1,6 @@
+{
+    "require": {
+		"hedronium/avity": "dev-master",
+		"ranvis/identicon": "dev-master"
+    }
+}
