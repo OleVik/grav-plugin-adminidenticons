@@ -1,6 +1,9 @@
 {
+	"config": {
+		"preferred-install": "dist"
+	},
     "require": {
-		"hedronium/avity": "dev-master",
-		"ranvis/identicon": "dev-master"
+		"hedronium/avity": "^1.0",
+		"ranvis/identicon": "^1.0"
     }
 }

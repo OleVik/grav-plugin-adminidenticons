@@ -4,21 +4,21 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "50b1a7ad88d7aee9cee220dddb2af0a4",
-    "content-hash": "879875a6ea615bd44e1e00502c5b78e2",
+    "hash": "b038326916f7c0da61de4b1b686d79df",
+    "content-hash": "109ebdab49eab1c4aebeed98fb450fe0",
     "packages": [
         {
             "name": "hedronium/avity",
-            "version": "dev-master",
+            "version": "v1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Hedronium/Avity.git",
-                "reference": "f5fdd07e32f332852c2cc1a686568b5372448a90"
+                "reference": "8da368bba020c598de4d02c2d65eb51a15f8d102"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Hedronium/Avity/zipball/f5fdd07e32f332852c2cc1a686568b5372448a90",
-                "reference": "f5fdd07e32f332852c2cc1a686568b5372448a90",
+                "url": "https://api.github.com/repos/Hedronium/Avity/zipball/8da368bba020c598de4d02c2d65eb51a15f8d102",
+                "reference": "8da368bba020c598de4d02c2d65eb51a15f8d102",
                 "shasum": ""
             },
             "require": {
@@ -38,14 +38,13 @@
             "license": [
                 "MIT"
             ],
-            "description": "Highly extensible & customizable Identicon Generator",
+            "description": "this is an image generator",
             "keywords": [
-                "customizable",
-                "extensible",
                 "generator",
-                "identicon"
+                "github",
+                "image"
             ],
-            "time": "2016-04-16 16:38:56"
+            "time": "2016-04-15 13:08:12"
         },
         {
             "name": "imagine/imagine",
@@ -106,7 +105,7 @@
         },
         {
             "name": "ranvis/identicon",
-            "version": "dev-master",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ranvis/identicon.git",
@@ -149,10 +148,7 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "hedronium/avity": 20,
-        "ranvis/identicon": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

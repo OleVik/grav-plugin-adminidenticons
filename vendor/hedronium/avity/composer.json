@@ -1,0 +1,19 @@
+{
+    "name": "hedronium/avity",
+    "description": "this is an image generator",
+    "type": "library",
+    "keywords": ["image","generator","github"],
+    "license": "MIT",
+  	"autoload": {
+        "psr-4": {
+            "Hedronium\\Avity\\": "src/"
+        }
+    },
+    "require": {
+        "imagine/imagine": "0.6.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "5.0.*",
+        "mockery/mockery": "0.9.4"
+    }
+}
