@@ -1,9 +1,22 @@
-# v1.0.1
-## 17/Jan/2017
+# v1.0.2
+## 24-02-2017
+
 1. [](#bugfix)
-     * Fix Composer-dependencies
+    * Use less-destructive templates
+    * Changelog Date Formats
+2. [](#improved)
+    * Code formatting and simplification
+    * PSR-1 and PSR-2 compliance
+    * Less generic plugin icon
+
+# v1.0.1
+## 17-02-2017
+
+1. [](#bugfix)
+    * Fix Composer-dependencies
 
 # v1.0.0
-## 15/Jan/2017
+## 15-01-2017
+
 1. [](#new)
     * Initial release
