@@ -1,40 +1,79 @@
 <?php
 namespace Grav\Plugin;
 
-use Grav\Common\Data;
-use Grav\Common\Plugin;
 use Grav\Common\Grav;
-use Grav\Common\Uri;
-use Grav\Common\Taxonomy;
+use Grav\Common\Plugin;
 use Grav\Common\Page\Page;
 use RocketTheme\Toolbox\Event\Event;
 
 require __DIR__ . '/vendor/autoload.php';
 use Hedronium\Avity\Avity;
-
+ 
+/**
+ * Use Identicons for avatars in the Admin-plugin
+ *
+ * Class AdminIdenticonsPlugin
+ * @package Grav\Plugin
+ * @return mixed Identicon-replacements in Admin-plugin
+ * @license MIT License by Ole Vik
+ */
 class AdminIdenticonsPlugin extends Plugin
 {
+
+    /**
+     * Initialize plugin and subsequent events
+     * @return array
+     */
     public static function getSubscribedEvents()
     {
         return [
-            'onPluginsInitialized' => ['onPluginsInitialized', 0],
-            'onAdminTwigTemplatePaths' => ['onAdminTwigTemplatePaths', 0]
+            'onPluginsInitialized' => ['onPluginsInitialized', 0]
         ];
     }
+
+    /**
+     * Declare config from plugin-config
+     * @return array Plugin configuration
+     */
+    public function config()
+    {
+        $pluginsobject = (array) $this->config->get('plugins');
+        if (isset($pluginsobject) && $pluginsobject['adminidenticons']['enabled']) {
+            $config = $pluginsobject['adminidenticons'];
+        } else {
+            return;
+        }
+        return $config;
+    }
+
+    /**
+     * Register events with Grav
+     * @return void
+     */
     public function onPluginsInitialized()
     {
-        $config = (array) $this->config->get('plugins');
-        if ($this->isAdmin() && $config['adminidenticons']['enabled']) {
+        /* Check if Admin-interface */
+        if (!$this->isAdmin()) {
+            return;
+        }
+
+        /* Only proceed if user does not have a custom avatar */
+        if (is_null($this->grav['user']->avatar)) {
             $this->enable([
                 'onAssetsInitialized' => ['onAssetsInitialized', 0],
-                'onPageContentProcessed' => ['onPageContentProcessed', 0]
+                'onPageContentProcessed' => ['onPageContentProcessed', 0],
+                'onAdminTwigTemplatePaths' => ['onAdminTwigTemplatePaths', -1]
             ]);
         }
     }
+
+    /**
+     * Custom CSS setting
+     * @return void
+     */
     public function onAssetsInitialized()
     {
-        $config = (array) $this->config->get('plugins');
-        $config = $config['adminidenticons'];
+        $config = $this->config();
         if (isset($config['border_radius'])) {
             if ($config['border_radius'] > 0) {
                 $border_radius = $config['border_radius'];
@@ -44,28 +83,50 @@ class AdminIdenticonsPlugin extends Plugin
         }
         $this->grav['assets']->addInlineCss('.user-details img, #admin-user-details img, .admin-user-details img {border-radius: '.$border_radius.'%;}');
     }
+
+    /**
+     * Register template overrides
+     * @param RocketTheme\Toolbox\Event\Event $event
+     * @return void
+     */
     public function onAdminTwigTemplatePaths($event)
     {
-        $event['paths'] = [__DIR__ . '/admin/templates'];
+        $event['paths'] = [__DIR__ . '/admin/themes/grav/templates'];
     }
+
+    /**
+     * Create Identicons and push to Twig
+     * @return void
+     */
     public function onPageContentProcessed()
     {
-        $config = (array) $this->config->get('plugins');
-        $config = $config['adminidenticons'];
+        $config = $this->config();
+        $hash = $this->grav['user']->fullname;
+        $imageDataUri = $this->generateIdenticon($hash, $config);
+        $this->grav['twig']->twig_vars['identicon'] = $imageDataUri;
+    }
+
+    /**
+     * Generate Identicon
+     * @param string $hash Unique identifier for user
+     * @param array $config Plugin configuration
+     * @return Base64 encoded png-image
+     */
+    public function generateIdenticon($hash, $config)
+    {
         if (isset($config['type']) && $config['type'] == 'identicon') {
-            $hash = $this->grav['user']->fullname;
             ob_start();
             $avity = Avity::init([
                 'generator' => \Hedronium\Avity\Generators\Hash::class
             ])
-            ->height(128)
-            ->width(128);
+            ->height(200)
+            ->width(200);
             $avity->hash($hash);
 
             if ($config['padding']) {
                 $avity->padding($config['padding']);
             } else {
-                $avity->padding(28);
+                $avity->padding(40);
             }
             if ($config['rows']) {
                 $avity->rows($config['rows']);
@@ -99,9 +160,7 @@ class AdminIdenticonsPlugin extends Plugin
             $b64 = base64_encode(ob_get_contents());
             ob_end_clean();
             $imageDataUri = 'data:image/png;base64,' . $b64;
-            $this->grav['twig']->twig_vars['identicon'] = $imageDataUri;
         } elseif (isset($config['type']) && $config['type'] == 'pattern') {
-            $hash = $this->grav['user']->fullname;
             $hash = md5($hash);
             $hash = str_repeat($hash, 8);
 
@@ -118,17 +177,22 @@ class AdminIdenticonsPlugin extends Plugin
 
             ob_start();
             $tile = new \Ranvis\Identicon\Tile();
-            $identicon = new \Ranvis\Identicon\Identicon(128, $tile, $tiles, $colors);
+            $identicon = new \Ranvis\Identicon\Identicon(200, $tile, $tiles, $colors);
             $identicon->draw($hash)->output();
             $b64 = base64_encode(ob_get_contents());
             ob_end_clean();
             $imageDataUri = 'data:image/png;base64,' . $b64;
-            $this->grav['twig']->twig_vars['identicon'] = $imageDataUri;
         }
+        return $imageDataUri;
     }
+
     /**
      * Convert hexadecimal color code to RGB
-     * Source: http://php.net/manual/en/function.hexdec.php#99478
+     * @param string $hexStr Hexadecimal color
+     * @param boolean $returnAsString
+     * @param string $seperator
+     * @return string RGB value
+     * @see http://php.net/manual/en/function.hexdec.php#99478
      */
     private function hex2RGB($hexStr, $returnAsString = false, $seperator = ',')
     {

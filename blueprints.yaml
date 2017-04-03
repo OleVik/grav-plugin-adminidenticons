@@ -1,5 +1,5 @@
 name: Admin Identicons
-version: 1.0.2
+version: 1.0.3
 description: "Use Identicons for avatars in the Admin-plugin."
 icon: user-circle
 author:
@@ -10,6 +10,9 @@ homepage: https://github.com/olevik/grav-plugin-adminidenticons
 keywords: avatar, avatars, identicon, identicons
 bugs: https://github.com/olevik/grav-plugin-adminidenticons/issues
 license: MIT
+dependencies:
+  - { name: grav, version: '>=1.2' }
+  - { name: admin, version: '>=1.3.2' }
 
 form:
   validation: loose

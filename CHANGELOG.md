@@ -1,3 +1,18 @@
+# v1.0.3
+## 03-04-2017
+
+1. [](#improved)
+    * Use less destructive, core templates
+    * Improve template paths
+    * Compatibility with custom avatars
+    * Code cleanup
+2. [](#bugfix)
+    * Image scaling
+    * Bump Grav dependencies
+3. [](#new)
+    * Deprecated range-field template
+    * Inline documentation, cleanup
+
 # v1.0.2
 ## 24-02-2017
 
