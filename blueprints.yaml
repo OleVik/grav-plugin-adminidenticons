@@ -99,7 +99,7 @@ form:
     section_pattern:
       type: section
       title: Pattern styling
-      text: Allowable number of tiles and colors to use in pattern. WARNING: Values higher than 12 cause higher levels of memory- and processing power-usage.
+      text: "Allowable number of tiles and colors to use in pattern. WARNING: Values higher than 12 cause higher levels of memory- and processing power-usage."
       underline: true
       fields:
         tiles:
